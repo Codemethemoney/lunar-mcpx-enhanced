@@ -1,0 +1,42 @@
+{
+  "name": "@lunar/mcpx-enhanced",
+  "version": "2.0.0",
+  "description": "Enhanced MCP tool discovery with proper response formatting, jump codes, tool chains, semantic caching, and pattern learning",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "lint": "eslint src/",
+    "format": "prettier --write src/",
+    "build": "npm run lint && npm test",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "tool-discovery",
+    "ai-tools",
+    "semantic-search"
+  ],
+  "author": "Gary O'Leary",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "yaml": "^2.3.0",
+    "node-cache": "^5.1.2",
+    "cosine-similarity": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3",
+    "@types/node": "^20.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garyoleary/lunar-mcpx-enhanced.git"
+  }
+}

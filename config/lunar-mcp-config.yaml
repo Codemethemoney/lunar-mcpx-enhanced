@@ -1,0 +1,35 @@
+# Lunar MCP Enhanced Configuration
+
+# Cache settings
+cache:
+  ttl: 3600              # Time to live in seconds (1 hour)
+  threshold: 0.85        # Similarity threshold for semantic matching
+  maxSize: 1000          # Maximum number of cached entries
+  checkPeriod: 600       # Check period for cache cleanup (10 minutes)
+
+# Pattern learning settings
+patterns:
+  maxHistory: 1000       # Maximum usage history to maintain
+  minConfidence: 0.7     # Minimum confidence for suggestions
+
+# Tool discovery settings
+discovery:
+  refreshInterval: 300   # Refresh tool list every 5 minutes
+  categories:            # Tool categories
+    - github
+    - docker
+    - filesystem
+    - system
+    - database
+    - cloud
+    - ai
+
+# Performance settings
+performance:
+  maxConcurrentRequests: 10
+  requestTimeout: 30000  # 30 seconds
+  
+# Logging
+logging:
+  level: info           # debug, info, warn, error
+  format: json          # json or text
