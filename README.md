@@ -138,6 +138,38 @@ Lists all available MCP tools with categories and jump codes.
 
 ## 🛠️ Development
 
+### Proxy Mode (Experimental)
+
+Run Lunar as an always-on background service that pre-processes prompts:
+
+```bash
+# Start proxy server
+npm run proxy
+
+# Or with auto-reload
+npm run dev:proxy
+```
+
+Access at `http://localhost:8080`. See [Proxy Documentation](docs/PROXY_MODE.md).
+
+### Browser Extension
+
+For automatic prompt interception in Claude web:
+1. Load `/browser-extension` as unpacked extension
+2. Ensures Lunar proxy is running
+3. Use Claude.ai normally - prompts are auto-enhanced
+
+### Desktop Wrapper
+
+Full desktop app with embedded Claude and Lunar integration:
+```bash
+cd desktop-wrapper
+npm install
+npm start
+```
+
+See [Desktop Wrapper Guide](desktop-wrapper/README.md).
+
 ```bash
 # Install dependencies
 npm install

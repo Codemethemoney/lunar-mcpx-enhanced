@@ -1,0 +1,431 @@
+/* Lunar Claude Wrapper Styles */
+:root {
+  --lunar-primary: #4CAF50;
+  --lunar-secondary: #2196F3;
+  --lunar-accent: #FFC107;
+  --lunar-dark: #1a1a1a;
+  --lunar-light: #f5f5f5;
+  --sidebar-width: 320px;
+  --status-bar-height: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--lunar-dark);
+  color: #333;
+  overflow: hidden;
+}
+
+/* Status Bar */
+#status-bar {
+  height: var(--status-bar-height);
+  background: #2d2d2d;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #444;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  -webkit-app-region: no-drag;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.connected {
+  background: var(--lunar-primary);
+  box-shadow: 0 0 4px var(--lunar-primary);
+}
+
+.status-indicator.disconnected {
+  background: #f44336;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Main Container */
+#main-container {
+  display: flex;
+  height: calc(100vh - var(--status-bar-height));
+}
+
+/* Sidebar */
+#sidebar {
+  width: var(--sidebar-width);
+  background: #f8f9fa;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+#sidebar.hidden {
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+#sidebar h3 {
+  color: var(--lunar-dark);
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+#sidebar h4 {
+  color: #666;
+  margin: 24px 0 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Claude Container */
+#claude-container {
+  flex: 1;
+  position: relative;
+  background: white;
+}
+
+#claude-webview {
+  width: 100%;
+  height: 100%;
+}
+
+/* Input Overlay */
+#input-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 2px solid var(--lunar-primary);
+  padding: 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#input-overlay.hidden {
+  display: none;
+}
+
+.input-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#lunar-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+#lunar-input:focus {
+  outline: none;
+  border-color: var(--lunar-primary);
+}
+
+.input-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+#analysis-preview {
+  font-size: 14px;
+}
+
+.analyzing {
+  color: var(--lunar-secondary);
+}
+
+.tools-found {
+  color: var(--lunar-primary);
+  font-weight: 500;
+}
+
+.no-tools {
+  color: #666;
+}
+
+.error {
+  color: #f44336;
+}
+
+/* Buttons */
+.primary-button,
+.secondary-button,
+.cancel-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.primary-button {
+  background: var(--lunar-primary);
+  color: white;
+}
+
+.primary-button:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.primary-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary-button {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.secondary-button:hover {
+  background: #e0e0e0;
+}
+
+.cancel-button {
+  background: transparent;
+  color: #666;
+}
+
+.cancel-button:hover {
+  color: #333;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.plan-summary {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.plan-steps {
+  margin-bottom: 20px;
+}
+
+.plan-step {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border-left: 3px solid var(--lunar-primary);
+}
+
+.step-number {
+  background: var(--lunar-primary);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.tool-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.confidence {
+  color: #666;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Loading Spinner */
+#loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2000;
+}
+
+#loading-spinner.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--lunar-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Tool Registry */
+.tool-categories {
+  display: grid;
+  gap: 12px;
+}
+
+.tool-category {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-category:hover {
+  border-color: var(--lunar-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tool-category h5 {
+  margin-bottom: 4px;
+  color: var(--lunar-dark);
+}
+
+.tool-category p {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Recent Plans */
+.recent-plan-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.plan-time {
+  color: #666;
+}
+
+.plan-summary {
+  color: var(--lunar-primary);
+  font-weight: 500;
+}
+
+/* Tool Analysis */
+#tool-analysis {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

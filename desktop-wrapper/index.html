@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lunar Claude - Enhanced Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Status Bar -->
+  <div id="status-bar">
+    <div class="status-item">
+      <span class="status-indicator" id="lunar-indicator"></span>
+      <span id="lunar-status">Lunar: Connecting...</span>
+    </div>
+    <div class="status-item">
+      <span id="tool-count">Tools ready: 0</span>
+    </div>
+    <div class="status-item">
+      <button id="toggle-sidebar" class="icon-button" title="Toggle Tool Panel">🛠️</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div id="main-container">
+    <!-- Sidebar for tool information -->
+    <div id="sidebar" class="hidden">
+      <h3>🌙 Lunar Tool Analysis</h3>
+      <div id="tool-analysis">
+        <p class="placeholder">Type a message to see tool suggestions...</p>
+      </div>
+      
+      <h4>Recent Tool Plans</h4>
+      <div id="recent-plans">
+        <p class="placeholder">No recent plans</p>
+      </div>
+      
+      <h4>Available Tools</h4>
+      <div id="tool-registry">
+        <p class="placeholder">Loading tool registry...</p>
+      </div>
+    </div>
+
+    <!-- Claude Interface -->
+    <div id="claude-container">
+      <!-- Embedded Claude webview -->
+      <webview 
+        id="claude-webview"
+        src="https://claude.ai/new"
+        partition="persist:claude"
+        webpreferences="contextIsolation=yes"
+        style="width: 100%; height: 100%;">
+      </webview>
+      
+      <!-- Custom input overlay -->
+      <div id="input-overlay" class="hidden">
+        <div class="input-container">
+          <textarea 
+            id="lunar-input" 
+            placeholder="Type your message... (Lunar will analyze before sending)"
+            rows="3"
+          ></textarea>
+          <div class="input-actions">
+            <div id="analysis-preview"></div>
+            <button id="send-enhanced" class="primary-button">Send with Lunar ✨</button>
+            <button id="send-normal" class="secondary-button">Send without Lunar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tool Plan Modal -->
+  <div id="tool-plan-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>🌙 Lunar Tool Plan Ready</h3>
+      <div id="tool-plan-details"></div>
+      <div class="modal-actions">
+        <button id="execute-plan" class="primary-button">Execute Plan</button>
+        <button id="modify-plan" class="secondary-button">Modify</button>
+        <button id="cancel-plan" class="cancel-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="hidden">
+    <div class="spinner"></div>
+    <p>Lunar is analyzing your prompt...</p>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
